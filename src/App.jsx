@@ -34,7 +34,8 @@ function App() {
   }
   
   return (
-    <div className="border flex flex-col border-white w-[35rem] h-[11.5rem] rounded-lg">
+    <div className="h-screen min-w-full flex items-center justify-center">
+           <div className="border flex flex-col border-white w-[35rem] h-[11.5rem] rounded-lg">
       <div className="border  h-[30%] font-semibold text-2xl text-center"><h2>Password generator</h2></div>
       <div className="border  h-[30%] flex items-center justify-center">
         <div className="w-full h-full flex">
@@ -57,6 +58,8 @@ function App() {
         />
       </div>
     </div>
+    </div>
+  
   )
 }
 
