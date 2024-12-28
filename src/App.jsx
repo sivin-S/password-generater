@@ -5,6 +5,7 @@ function App() {
   const [isSymbolAllowed,setCharAllowed] = useState(false)
   const [isNumberAllowed,setNumberAllowed] = useState(false)
   const [length,setLength] = useState(8)
+  const passCopy = useRef(null)
 
   const  passGenerator = useCallback(function (){
      let str='ABCDEFGHIJKLMNOPQRSTUVWXYZ' 
@@ -23,13 +24,22 @@ function App() {
     passGenerator()
   },[length,isNumberAllowed,isSymbolAllowed])
 
+  // console.log();
+  
+  let selection = function(){
+    let {current} = passCopy
+    
+    window.navigator.clipboard.writeText(password)
+    current.style.color = (current.style.color==='green') ? '' : 'green'
+  }
+  
   return (
     <div className="border flex flex-col border-white w-[35rem] h-[11.5rem] rounded-lg">
-      <div className="border border-red-700 h-[30%] font-semibold text-2xl text-center"><h2>Password generator</h2></div>
-      <div className="border border-green-700 h-[30%] flex items-center justify-center">
+      <div className="border  h-[30%] font-semibold text-2xl text-center"><h2>Password generator</h2></div>
+      <div className="border  h-[30%] flex items-center justify-center">
         <div className="w-full h-full flex">
-        <input type="text" readOnly name="" value={password} id="" className="w-full text-center py-[0.7rem]"/>
-        <button onClick={()=> window.navigator.clipboard.writeText(password)} className="font-semibold px-5 py-[0.7rem] bg-blue-500">copy</button>
+        <input ref={passCopy} type="text" readOnly name="" value={password} id="" className="w-full text-center py-[0.7rem]"/>
+        <button onClick={ selection } className="font-semibold px-5 py-[0.7rem] bg-blue-500">copy</button>
         </div>
       </div>
       <div className="h-[30%] flex items-center justify-center gap-5">
